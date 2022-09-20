@@ -45,4 +45,17 @@ describe('testa  as funcionalidades da page Pokedex ', () => {
     userEvent.click(buttonAll);
     expect(buttonAll).toBeDefined();
   });
+
+  test('verifica se o botão de filtragem corresponde ao tipo do Pokemon ', () => {
+    renderWithRouter(<App />);
+
+    const filterPokemonTypeBtn = screen.getAllByTestId('pokemon-type-button');
+
+    expect(filterPokemonTypeBtn[4]).toHaveTextContent('Psychic');
+    userEvent.click(filterPokemonTypeBtn[4]);
+
+    const pokemonTypeScreen = screen.getByTestId('pokemon-type');
+    expect(pokemonTypeScreen).toBeDefined();
+    expect(pokemonTypeScreen).toHaveTextContent('Psychic');
+  });
 });
